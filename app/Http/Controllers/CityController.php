@@ -21,10 +21,10 @@ class CityController extends Controller
         // return $request;
         
         $cities->save();
-        // return back();
-        return response()->json([           
-            'saved'=> true,
-        ]);
+        return back();
+        // return response()->json([           
+        //     'saved'=> true,
+        // ]);
     }
 
     public function edit(City $cities)
