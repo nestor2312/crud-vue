@@ -40,7 +40,7 @@ var staticRenderFns = [function () {
 
   return _c("section", [_c("h1", {
     staticClass: "mt-5"
-  }, [_vm._v("Hellooo")])]);
+  }, [_vm._v("Helloooo")])]);
 }];
 render._withStripped = true;
 

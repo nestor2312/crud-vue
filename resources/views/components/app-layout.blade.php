@@ -28,7 +28,7 @@
       </nav> 
     </header> 
     {{-- <h1 class="mt-5">Hellooo</h1> --}}
-  <Hello-World></Hello-World>
+  <hello-world></hello-world>
     {{$slot}}
    
 </main>  
