@@ -9,7 +9,7 @@ class Son extends Model
 {
     use HasFactory;
    
-    protected $fillable = ['Name','person_id','Age','Email'];
+    protected $fillable = ['name','person_id','age','email'];
 
     public function person(){
         return $this->belongsTo(Person::class);

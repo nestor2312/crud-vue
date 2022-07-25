@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PersonRequest;
 use App\Models\City;
 use App\Models\Person;
+use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -12,43 +13,47 @@ class PersonController extends Controller
     public function index()
     {
         $cities = City::all();
-        $persons = Person::all();
-        return view('person.inicio',compact('persons','cities'));
+        $people = Person::with('city')->get();
+        return view('person.inicio',compact('people','cities'));
     }
 
     public function store(PersonRequest $request)
     {
-        $persons = new Person($request->all());
-        // return $request;
-        
-        $persons->save();
-        return back();
-        // return response()->json([           
-        //     'saved'=> true,
-        //     'person'=> $persons
-        // ]);
+        // dd($request);
+            $person = new Person($request->all());
+            // return $request;
+            
+                $person->save();
+                // return back();
+                return response()->json([           
+                    'saved'=> true,
+                    'person'=> $person->load('city')
+                ]);
     }
 
-    public function edit(Person $persons)
+    public function edit(Person $person)
     {
         // $persons = Person::find($id);
         $cities = City::all();
-        return view('person.edit',compact('persons','cities'));
+        return view('person.edit',compact('person','cities'));
     }
 
-    public function update(PersonRequest $request,Person $persons)
+    public function update(PersonRequest $request,Person $person)
     {
 
-        $persons->update($request->all());
+        $person->update($request->all());
         // return back();
         return redirect('/');
        
     }
 
-    public function delete(Person $persons)
+    public function delete(Person $person)
     {
-        $persons->delete();
-        return back();
+        $person->delete();
+        // return back();
+        return response()->json([           
+            'deleted'=> true,
+        ]);
       
     }
 }

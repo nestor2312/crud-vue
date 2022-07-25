@@ -16,9 +16,9 @@ class CreateSonsTable extends Migration
         Schema::create('sons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('person_id')->constrained();
-            $table->string('Name');
-            $table->string('Age');
-            $table->string('Email');
+            $table->string('name');
+            $table->string('age');
+            $table->string('email');
             $table->timestamps();
         });
     }

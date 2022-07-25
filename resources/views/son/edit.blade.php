@@ -28,4 +28,5 @@
         </div>
         <button type="submit" class="btn btn-info">Save</button>
     </form>
+</div>
 

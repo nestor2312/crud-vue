@@ -24,12 +24,12 @@ class PersonRequest extends FormRequest
     public function rules()
     {
         return [
-            'Name' => ['required','max:100','string'],
-            'Age' => ['required','max:100','integer'],
-            'Address' => ['required','max:100','string'],
-            'city_id' => ['required','max:100','string'],
-            'Phone' => ['required','min:10','integer'],
-            'Date_of_birth' => ['required','max:100','date'],
+            'name' => ['required','max:100','string'],
+            'age' => ['required','max:100','integer'],
+            'address' => ['required','max:100','string'],
+            'city_id' => ['required','max:100','integer'],
+            'phone' => ['required','min:10','integer'],
+            'date_of_birth' => ['required','max:100','date'],
         ];
     }
 }

@@ -9,7 +9,7 @@ class Person extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['Name','Age','Address','city_id','Phone','Date_of_birth'];
+    protected $fillable = ['name','age','address','city_id','phone','date_of_birth'];
 
     public function city(){
         return $this->belongsTo(City::class);

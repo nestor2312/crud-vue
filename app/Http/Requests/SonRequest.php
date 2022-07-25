@@ -24,9 +24,10 @@ class SonRequest extends FormRequest
     public function rules()
     {
         return [
-            'Name' => ['required','max:100','string'],
-            'Age' => ['required','max:100','integer'],
-            'Email' => ['required','max:100','email'],
+            'name' => ['required','max:100','string'],
+            'person_id' => ['required','max:100','integer'],
+            'age' => ['required','max:100','integer'],
+            'email' => ['required','max:100','email'],
         ];
     }
 }

@@ -22,17 +22,16 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', [App\Http\Controllers\PersonController::class, 'index'])->name('person.home');
-Route::group(['prefix' => 'person'],function(){
-  
+Route::group(['prefix' => '/person'],function(){
     Route::post('/store', [App\Http\Controllers\PersonController::class, 'store'])->name('person.store');
-    Route::get('/delete/{persons}', [App\Http\Controllers\PersonController::class, 'delete'])->name('person.delete');
-    Route::get('/edit/{persons}', [App\Http\Controllers\PersonController::class, 'edit'])->name('person.edit');
-    Route::post('/update/{persons}', [App\Http\Controllers\PersonController::class, 'update'])->name('person.update');
+    Route::delete('/delete/{person}', [App\Http\Controllers\PersonController::class, 'delete'])->name('person.delete');
+    Route::get('/edit/{person}', [App\Http\Controllers\PersonController::class, 'edit'])->name('person.edit');
+    Route::post('/update/{person}', [App\Http\Controllers\PersonController::class, 'update'])->name('person.update');
 });
 Route::get('city', [App\Http\Controllers\CityController::class, 'index']);
 Route::group(['prefix' => 'city'],function(){
     Route::post('/store', [App\Http\Controllers\CityController::class, 'store'])->name('city.store');
-    Route::get('/delete/{cities}', [App\Http\Controllers\CityController::class, 'delete'])->name('city.delete');
+    Route::delete('/delete/{city}', [App\Http\Controllers\CityController::class, 'delete'])->name('city.delete');
     Route::get('/edit/{cities}', [App\Http\Controllers\CityController::class, 'edit'])->name('city.edit');
     Route::post('/update/{cities}', [App\Http\Controllers\CityController::class, 'update'])->name('city.update');
 });

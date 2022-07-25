@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    protected $fillable = ['City'];
+    protected $fillable = ['name'];
 
     public function person(){
         return $this->hasOne(Person::class);

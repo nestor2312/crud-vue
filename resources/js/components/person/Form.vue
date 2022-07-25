@@ -1,30 +1,31 @@
 <template>
     <section>
-        <form method="POST">
+        <form @submit.prevent="storePerson">
             <div class="mb-2">
               <label for="" class="form-label">Name</label>
-              <input type="text" name="Name" class="form-control" placeholder="Name" required>
+              <input type="text" v-model="person.name" class="form-control" placeholder="Name" required>
             </div>
             <div class="mb-2">
                 <label for="" class="form-label">Age</label>
-                <input type="number" name="Age" class="form-control" placeholder="Age" required>
+                <input type="number"  v-model="person.age" class="form-control" placeholder="Age" required>
             </div>
             <div class="mb-2">
                 <label for="" class="form-label">Address</label>
-                <input type="text" name="Address" class="form-control" placeholder="Address" required>
+                <input type="text" v-model="person.address" class="form-control" placeholder="Address" required>
             </div>
             <div class="form-group">
                 <label for="sel1">City</label>
-                <select name="city_id" class="form-control" id="sel1">
+                <select class="form-control" v-model="person.city_id" required>
+                  <option v-for="(city, index) in cities"  :value="city.id" :key="index">{{city.name}} </option>
                 </select>
               </div>
             <div class="mb-2">
                 <label for="" class="form-label">Phone</label>
-                <input type="number" name="Phone" class="form-control" placeholder="Phone" required>
+                <input type="number"  v-model="person.phone"  class="form-control" placeholder="Phone" required>
             </div>
             <div class="mb-2">
                 <label for="" class="form-label">Date of birth</label>
-                <input type="date"  name="Date_of_birth" class="form-control" >
+                <input type="date"  v-model="person.date_of_birth"  class="form-control" >
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
           </form>
@@ -32,7 +33,41 @@
 </template>
 
 <script>
+import axios from 'axios'
+
   export default {
-    name: "form"
+    // name: "Form"
+     props: ['cities'],
+    data(){
+      return {
+        person: {
+          name: null,
+          age: null,
+          address: null,
+          phone: null,
+          date_of_birth: null,
+          city_id: 0
+        }
+      }
+    },
+    methods:{
+      async storePerson(){
+        await axios.post('/person/store', this.person).then(res => {
+             if(res.data.saved){
+            this.person={
+               name: null,
+               age: null,
+               address: null,
+               phone: null,
+               date_of_birth: null,
+               city_id: 0
+            }
+             alert('guardado')
+             this.$parent.people_update.push(res.data.persons)
+            
+          }
+        })
+      }
+    }
   }
 </script>

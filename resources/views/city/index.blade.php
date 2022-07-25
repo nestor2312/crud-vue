@@ -1,4 +1,11 @@
-<x-app-layout />
+<x-app-layout >
+    <section class="container mt-5">
+        <index-city :cities="{{$cities}}"></index-city>
+    </section>
+    {{-- :cities={{$cities}} --}}
+</x-app-layout >
+
+{{-- <x-app-layout />
     <div class="container mt-5">
         <h1>Registrar cuidad</h1>
         @if ($errors->any())
@@ -41,3 +48,4 @@
                     </table> 
                 </div>
             </div>
+    </div> --}}

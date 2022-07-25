@@ -1,4 +1,10 @@
-<x-app-layout />
+<x-app-layout >
+    <section class="container mt-5">
+        <index-son :sons="{{$sons}}" :people="{{$people}}"></index-son>
+    </section>
+</x-app-layout >
+
+{{-- <x-app-layout />
     <div class="container mt-5">
         <h1>Registrar hijo</h1>
         @if ($errors->any())
@@ -65,4 +71,4 @@
             </div>
     </div>
 </body>
-</html>
+</html> --}}

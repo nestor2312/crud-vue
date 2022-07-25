@@ -11,40 +11,46 @@ class SonController extends Controller
 {
     public function index()
     {
-        $persons = Person::all();
-        $sons = Son::all();
-        return view('son.index',compact('sons','persons'));
+        $people = Person::all();
+        $sons = Son::with('person')->get();
+        return view('son.index',compact('sons','people'));
     }
 
     public function store(SonRequest $request)
     {
-        $sons = new Son($request->all());
+        
+        $son = new Son($request->all());
         // return $request;
         
-        $sons->save();
-        return back();
+        $son->save();
+        // return back();
+        return response()->json([           
+            'saved'=> true,
+            'son'=> $son
+        ]);
+        
     }
 
-    public function edit(Son $sons)
+    public function edit(Son $son)
     {
         // $sons = Son::find($id);
-        $persons = Person::all();
-        return view('son.edit',compact('sons','persons'));
+        $people = Person::all();
+        return view('son.edit',compact('son','people'));
     }
 
-    public function update(SonRequest $request,Son $sons)
+    public function update(SonRequest $request,Son $son)
     {
         // $sons = Son::find($id);
-        $sons->update($request->all());
+        $son->update($request->all());
         // return back();
         return redirect('son');
        
     }
 
-    public function delete(Son $sons)
+    public function delete(Son $son)
     {
         // $Son = Son::find($id);
-        $sons->delete();
+        $son->delete();
         return back();
       
     }

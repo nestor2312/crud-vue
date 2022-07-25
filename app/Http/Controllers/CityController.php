@@ -17,36 +17,40 @@ class CityController extends Controller
 
     public function store(CityRequest $request)
     {
-        $cities = new City($request->all());
+        $city = new City($request->all());
         // return $request;
         
-        $cities->save();
-        return back();
-        // return response()->json([           
-        //     'saved'=> true,
-        // ]);
+        $city->save();
+        // return back();
+        return response()->json([           
+            'saved'=> true,
+            'city'=> $city
+        ]);
     }
 
-    public function edit(City $cities)
+    public function edit(City $city)
     {
        
-        return view('city.edit',compact('cities'));
+        return view('city.edit',compact('city'));
     }
 
-    public function update(CityRequest $request, City $cities)
+    public function update(CityRequest $request, City $city)
     {
       
-        $cities->update($request->all());
+        $city->update($request->all());
         // return back();
         return redirect('city');
        
     }
 
-    public function delete(City $cities)
+    public function delete(City $city)
     {
         
-        $cities->delete();
-        return back();
+        $city->delete();
+        // return back();
+        return response()->json([           
+            'deleted'=> true,
+        ]);
       
     }
 }

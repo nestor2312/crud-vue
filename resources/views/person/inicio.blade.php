@@ -1,5 +1,11 @@
-<x-app-layout>
-<section class="container" >
+<x-app-layout >
+    <section class="container mt-5">
+        <index-person :cities="{{$cities}}" :people="{{$people}}"></index-person>
+    </section>
+    {{-- :cities={{$cities}} --}}
+</x-app-layout >
+
+{{-- <section class="container" >
     <div class="container mt-5">
         <h1>Registrar persona</h1>
         @if ($errors->any())
@@ -78,8 +84,8 @@
             </div>
     </div>
    
-</section>
-</x-app-layout>
+</section> --}}
+
 
 
    

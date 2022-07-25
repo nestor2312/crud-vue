@@ -28,11 +28,12 @@
       </nav> 
     </header> 
     {{-- <h1 class="mt-5">Hellooo</h1> --}}
-  <hello-world></hello-world>
+  {{-- <hello-world></hello-world> --}}
     {{$slot}}
    
-</main>  
+</main> 
   
-<script scr="{{mix('/js/app.js')}}"></script>
+{{-- <script scr="{{mix('/js/app.js')}}"></script> --}}
+<script src="{{mix('js/app.js')}}"></script> 
 </body>
 </html>
