@@ -1,4 +1,11 @@
-<x-app-layout />
+<x-app-layout >
+    <section class="container mt-5">
+        <h1>actualizar persona</h1>
+        <form-person :updatable_person="{{$person}}" :cities="{{$cities}}"></form-person>
+    </section>
+</x-app-layout >
+
+{{-- <x-app-layout />
 <div class="container mt-5">
     <h1>registro persona: {{$persons->Name}}</h1>
         <form action="{{route('person.update',$persons)}}" method="POST">
@@ -37,4 +44,4 @@
               </div>
             <button type="submit" class="btn btn-info">Save</button>
           </form>
-    </div>
+    </div> --}}

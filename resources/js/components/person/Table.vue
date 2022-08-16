@@ -16,14 +16,15 @@
                         </thead>
                         <tbody>                      
                                 <tr v-for="(person, index) in people" :key="index">
-                                    <td>{{person.name}}</td>
-                                    <td>{{person.age}}</td>
-                                    <td>{{person.address}}</td>
-                                    <td>{{person.city.name}}</td> 
-                                    <td>{{person.phone}}</td> 
-                                    <td>{{person.date_of_birth}}</td>
+                                    <th>{{person.name}}</th>
+                                    <th>{{person.age}}</th>
+                                    <th>{{person.address}}</th>
+                                    <th>{{person.city.name}}</th> 
+                                    <th>{{person.phone}}</th> 
+                                    <th>{{person.date_of_birth}}</th>
                                     <td>
-                                    <button class="btn btn-danger" @click="deletePerson(person, index)">Delete</button>
+                                         <a :href="`person/edit/${person.id}`" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-outline-danger " @click="deletePerson(person, index)">Delete</button>
                                     </td>
                                 </tr>
                         </tbody>

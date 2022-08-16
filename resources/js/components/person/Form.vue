@@ -37,7 +37,7 @@ import axios from 'axios'
 
   export default {
     // name: "Form"
-     props: ['cities'],
+     props: ['cities','updatable_person'],
     data(){
       return {
         person: {
@@ -50,9 +50,17 @@ import axios from 'axios'
         }
       }
     },
+    mounted(){
+      this.updatable_person ? this.person = this.updatable_person:''
+    },
     methods:{
       async storePerson(){
-        await axios.post('/person/store', this.person).then(res => {
+        let url ='/person/store';
+        if(this.updatable_person){
+          url =`/person/update/${this.person.id}`;
+          console.log(url);
+        }
+        await axios.post( url, this.person).then(res => {
              if(res.data.saved){
             this.person={
                name: null,
@@ -62,9 +70,12 @@ import axios from 'axios'
                date_of_birth: null,
                city_id: 0
             }
-             alert('guardado')
-             this.$parent.people_update.push(res.data.persons)
-            
+              alert('guardado');
+             this.$parent.people_update.push(res.data.person); 
+          }
+          else if(res.data.updated){
+            alert('actualizado')
+            window.location.href="/";
           }
         })
       }

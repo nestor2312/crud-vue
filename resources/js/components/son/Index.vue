@@ -20,6 +20,7 @@ import TableSon from './Table'
         son_update: this.sons
       }
     },
+
     components:{
         FormSon,
         TableSon

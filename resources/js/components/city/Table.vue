@@ -11,10 +11,12 @@
                         </thead>
                         <tbody>             
                             <tr v-for="(city, index) in cities" :key="index">
-                               <th>{{city.name}}</th>  
+                               <th>{{city.name}}</th> 
                                <th>
-                                   <button class="btn btn-danger" @click="deleteCity(city, index)">Delete</button>
-                               </th>         
+                                   <a :href="`city/edit/${city.id}`" class="btn btn-warning">Edit</a>
+                                   <button class="btn btn-outline-danger" @click="deleteCity(city, index)">Delete</button>
+                               </th>    
+                                    
                             </tr>
                         </tbody>
                     </table> 
@@ -32,8 +34,8 @@
         async deleteCity(city, index){
             await axios.delete(`city/delete/${city.id}`).then (res => {
                 if(res.data.deleted){
-                     alert('cuidad borrada')
-                     this.$parent.cities_update.splice(index,1)
+                     alert('ciudad borrada')
+                     this.$parent.city_update.splice(index,1)
                 }
             })
         }

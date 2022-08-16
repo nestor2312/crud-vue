@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddPeopleToSonTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddPeopleToSonTable extends Migration
      */
     public function up()
     {
-        Schema::table('son', function (Blueprint $table) {
-            $table->foreignId('person_id')->after('Name')->constrained();
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('description');
+            $table->string('image');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddPeopleToSonTable extends Migration
      */
     public function down()
     {
-        Schema::table('son', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('posts');
     }
 }

@@ -4,7 +4,7 @@
          <div class="form-group">
                 <label for="sel1">Person</label>
                 <select class="form-control" v-model="son.person_id" required>
-                  <option v-for="(person, index) in persons"  :value="person.id" :key="index">{{person.name}} </option>
+                  <option v-for="(person, index) in people"  :value="person.id" :key="index">{{person.name}} </option>
                 </select>
               </div>
             <div class="mb-2">
@@ -29,7 +29,7 @@ import axios from 'axios'
 
   export default {
     // name: "Form-Son",
-     props: ['people'],
+     props: ['people','updatable_son'],
     data(){
       return {
         son: {
@@ -41,9 +41,16 @@ import axios from 'axios'
         }
       }
     },
+    mounted(){
+      this.updatable_son ? this.son = this.updatable_son:''
+    },
     methods:{
       async storeSon(){
-        await axios.post('/son/store', this.son).then(res => {
+        let url ='/son/store';
+        if(this.updatable_son){
+          url = `/son/update/${this.son.id}`;
+        }
+        await axios.post(url, this.son).then(res => {
           if(res.data.saved){
             this.son={
                person_id: 0,
@@ -52,7 +59,12 @@ import axios from 'axios'
                email: null
             }
              alert('guardado')
-             this.$parent.son_update.push(res.data.sons)
+            //  console.log(res.data.son)
+             this.$parent.son_update.push(res.data.son)
+          }
+          else if(res.data.updated){
+            alert('actualizado')
+            window.location.href="/son";
           }
         })
       }

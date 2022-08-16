@@ -15,7 +15,9 @@ class CreateSonsTable extends Migration
     {
         Schema::create('sons', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('person_id')->constrained();
+            $table->unsignedBigInteger('person_id');
+            $table->foreign('person_id')->references('id')->on('people');
+            // $table->foreignId('person_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('age');
             $table->string('email');

@@ -14,7 +14,7 @@ class AddCityToPeopleTable extends Migration
     public function up()
     {
         Schema::table('people', function (Blueprint $table) {
-            $table->foreignId('city_id')->after('age')->constrained();
+            $table->foreignId('city_id')->after('age')->constrained()->onDelete('cascade');
         });
     }
 

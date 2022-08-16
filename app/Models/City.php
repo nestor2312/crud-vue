@@ -11,6 +11,6 @@ class City extends Model
     protected $fillable = ['name'];
 
     public function person(){
-        return $this->hasOne(Person::class);
+        return $this->hasMany(Person::class);
     }
 }

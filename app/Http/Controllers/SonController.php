@@ -26,7 +26,7 @@ class SonController extends Controller
         // return back();
         return response()->json([           
             'saved'=> true,
-            'son'=> $son
+            'son'=> $son->load('person')
         ]);
         
     }
@@ -43,7 +43,10 @@ class SonController extends Controller
         // $sons = Son::find($id);
         $son->update($request->all());
         // return back();
-        return redirect('son');
+        return response()->json([           
+            'updated'=> true,
+            'son'=> $son->load('person')
+        ]);
        
     }
 
@@ -51,7 +54,10 @@ class SonController extends Controller
     {
         // $Son = Son::find($id);
         $son->delete();
-        return back();
+        // return back();
+        return response()->json([           
+            'deleted'=> true,
+        ]);
       
     }
 }

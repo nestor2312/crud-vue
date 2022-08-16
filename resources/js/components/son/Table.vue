@@ -18,6 +18,10 @@
                                     <th>{{son.name}}</th>
                                     <th>{{son.age}}</th>
                                     <th>{{son.email}}</th>
+                                     <th>
+                                         <a :href="`son/edit/${son.id}`" class="btn btn-warning">Edit</a>
+                                   <button class="btn btn-outline-danger" @click="deleteSon(son, index)">Delete</button>
+                               </th>    
                                 </tr>
                         </tbody>
                     </table> 
@@ -29,6 +33,17 @@
 
 <script>
   export default {
-    props: ['sons']
+    props: ['sons'],
+
+     methods: {
+        async deleteSon(son, index){
+            await axios.delete(`son/delete/${son.id}`).then (res => {
+                if(res.data.deleted){
+                     alert('hijo borrado')
+                     this.$parent.son_update.splice(index,1)
+                }
+            })
+        }
+     }
   }
 </script> 

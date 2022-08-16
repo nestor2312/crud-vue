@@ -2,8 +2,8 @@
     <section class="container mt-5">
         <index-person :cities="{{$cities}}" :people="{{$people}}"></index-person>
     </section>
-    {{-- :cities={{$cities}} --}}
 </x-app-layout >
+
 
 {{-- <section class="container" >
     <div class="container mt-5">

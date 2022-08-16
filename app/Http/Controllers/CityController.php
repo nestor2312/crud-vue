@@ -36,10 +36,13 @@ class CityController extends Controller
 
     public function update(CityRequest $request, City $city)
     {
-      
+    //   return $city;
         $city->update($request->all());
         // return back();
-        return redirect('city');
+        return response()->json([           
+            'updated'=> true,
+            'city'=> $city
+        ]);
        
     }
 

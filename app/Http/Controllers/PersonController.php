@@ -13,7 +13,7 @@ class PersonController extends Controller
     public function index()
     {
         $cities = City::all();
-        $people = Person::with('city')->get();
+        $people = Person::with('city','sons')->get();
         return view('person.inicio',compact('people','cities'));
     }
 
@@ -43,7 +43,10 @@ class PersonController extends Controller
 
         $person->update($request->all());
         // return back();
-        return redirect('/');
+        return response()->json([           
+            'updated'=> true,
+            'person'=> $person->load('city')
+        ]);
        
     }
 

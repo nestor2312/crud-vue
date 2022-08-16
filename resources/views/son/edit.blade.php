@@ -1,4 +1,11 @@
-<x-app-layout />
+<x-app-layout >
+    <section class="container mt-5">
+        <h1>actualizar hijo</h1>
+        <form-son :updatable_son="{{$son}}" :people="{{$people}}"></form-son>
+    </section>
+  </x-app-layout >
+  
+{{-- <x-app-layout />
 <div class="container mt-5">
     <form action="{{route('son.update',$sons)}}" method="POST">
         @csrf
@@ -29,4 +36,4 @@
         <button type="submit" class="btn btn-info">Save</button>
     </form>
 </div>
-
+ --}}
